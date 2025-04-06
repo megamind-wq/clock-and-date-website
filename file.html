@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A vibrant clock tool with Time, World Clock, Stopwatch, Timer, Global Clock Converter, and Calendar with holidays.">
+    <meta name="keywords" content="world clock, global clock converter, online stopwatch, timer, calendar, holidays">
+    <meta name="author" content="Samuel">
+    <title>Clock</title>
+    <link href="https://fonts.googleapis.com/css2?family=DS-Digital&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button id="dark-mode-toggle">Dark Mode</button>
+    <header>
+        <h1>Clock and Date</h1>
+    </header>
+    <nav>
+        <button onclick="showSection('time')">Time</button>
+        <button onclick="showSection('stopwatch')">Stopwatch</button>
+        <button onclick="showSection('timer')">Timer</button>
+        <button onclick="showSection('world-clock')">World Clock</button>
+        <button onclick="showSection('converter')">Global Clock Converter</button>
+        <button onclick="showSection('calendar')">Calendar</button>
+    </nav>
+    <div class="container">
+        <!-- Time -->
+        <div id="time-content" class="content-section active">
+            <h2>Time</h2>
+            <div id="time-display">00:00:00</div>
+            <div id="date-display"></div>
+        </div>
+        <div id="time-instructions" class="instructions-section active">
+            <p><strong>How to Use Time:</strong></p>
+            <p>- View your local time displayed in hours, minutes, and seconds (24-hour format).</p>
+            <p>- Below, see the current date with month, day, and year.</p>
+            <p>- The time updates automatically every second.</p>
+        </div>
+
+        <!-- Stopwatch -->
+        <div id="stopwatch-content" class="content-section">
+            <div id="stopwatch-time">00:00:00.00</div>
+            <button id="start-stopwatch">Start</button>
+            <button id="stop-stopwatch">Stop</button>
+            <button id="lap-stopwatch">Lap</button>
+            <button id="reset-stopwatch">Reset</button>
+            <div id="laps"></div>
+        </div>
+        <div id="stopwatch-instructions" class="instructions-section">
+            <p><strong>How to Use Stopwatch:</strong></p>
+            <p>- Click "Start" to begin timing (button changes to "Pause").</p>
+            <p>- Click "Pause" to pause; click "Start" again to resume.</p>
+            <p>- Click "Stop" to halt the stopwatch completely.</p>
+            <p>- Click "Lap" while running to record a lap time (displayed below).</p>
+            <p>- Click "Reset" to clear the time and laps back to 00:00:00.00.</p>
+        </div>
+
+        <!-- Timer -->
+        <div id="timer-content" class="content-section">
+            <div id="timer-time">00:00:00</div>
+            <input type="number" id="timer-hours" min="0" max="99" placeholder="HH">
+            <input type="number" id="timer-minutes" min="0" max="59" placeholder="MM">
+            <input type="number" id="timer-seconds" min="0" max="59" placeholder="SS">
+            <button id="start-timer">Start</button>
+            <button id="stop-timer">Stop</button>
+            <button id="reset-timer">Reset</button>
+        </div>
+        <div id="timer-instructions" class="instructions-section">
+            <p><strong>How to Use Timer:</strong></p>
+            <p>- Enter hours (HH), minutes (MM), and seconds (SS) in the input fields (e.g., 01, 30, 00 for 1 hour 30 minutes).</p>
+            <p>- Click "Start" to begin the countdown (button changes to "Pause").</p>
+            <p>- Click "Pause" to pause; click "Start" to resume.</p>
+            <p>- Click "Stop" to halt the timer completely.</p>
+            <p>- Click "Reset" to clear the time and inputs back to 00:00:00.</p>
+            <p>- When the timer reaches zero, an alert says "Time's up!".</p>
+        </div>
+
+        <!-- World Clock -->
+        <div id="world-clock-content" class="content-section">
+            <div class="clock-grid" id="clock-grid"></div>
+        </div>
+        <div id="world-clock-instructions" class="instructions-section">
+            <p><strong>How to Use World Clock:</strong></p>
+            <p>- Browse real-time clocks for 75 cities across 7 regions (Major Cities, Africa, Asia, Europe, North America, South America, Australia/Oceania).</p>
+            <p>- Each card shows the city name and current time (24-hour format), updating every second.</p>
+            <p>- Hover over a card to highlight it.</p>
+        </div>
+
+        <!-- Global Clock Converter -->
+        <div id="converter-content" class="content-section">
+            <h2>Convert Clock Between Locations</h2>
+            <select id="from-city"></select>
+            <input type="datetime-local" id="from-time">
+            <select id="to-city"></select>
+            <button onclick="convertTime()">Convert</button>
+            <div id="converted-time"></div>
+        </div>
+        <div id="converter-instructions" class="instructions-section">
+            <p><strong>How to Use Global Clock Converter:</strong></p>
+            <p>- Select a starting city from the "From" dropdown (e.g., "New York, USA").</p>
+            <p>- Pick a date and time using the calendar input (e.g., 2025-03-30 14:35).</p>
+            <p>- Choose a destination city from the "To" dropdown (e.g., "Tokyo, Japan").</p>
+            <p>- Click "Convert" to see the equivalent time in both locations, displayed vertically below.</p>
+            <p>- If no time is selected or it’s invalid, an error message appears.</p>
+        </div>
+
+        <!-- Calendar -->
+        <div id="calendar-content" class="content-section">
+            <h2>Calendar</h2>
+            <div id="calendar-grid"></div>
+        </div>
+        <div id="calendar-instructions" class="instructions-section">
+            <p><strong>How to Use Calendar:</strong></p>
+            <p>- View a 12-month calendar for the current year, adjusted to your local time zone.</p>
+            <p>- Months are arranged in a 3×4 grid (3 horizontal, 4 vertical).</p>
+            <p>- Today’s date is highlighted in blue.</p>
+            <p>- Major holidays worldwide are highlighted in yellow with short names displayed.</p>
+            <p>- Days from previous/next months are grayed out for context.</p>
+        </div>
+    </div>
+    <div id="copyright">© <span id="year"></span> Clock and Date</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
