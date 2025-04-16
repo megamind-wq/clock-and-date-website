@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
--<urlset xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
-
--<url>
-
-<loc>https://clockanddate.com/</loc>
-
-<lastmod>2025-04-16T18:31:42+00:00</lastmod>
-
-</url>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+  <url>
+    <loc>https://clockanddate.com/</loc>
+    <lastmod>2025-04-16</lastmod>
+  </url>
+  <url>
+    <loc>https://clockanddate.com/stopwatch.html</loc>
+    <lastmod>2023-10-15</lastmod>
+  </url>
+  <url>
+    <loc>https://clockanddate.com/timer.html</loc>
+    <lastmod>2023-10-15</lastmod>
+  </url>
+  <url>
+    <loc>https://clockanddate.com/world-clock.html</loc>
+    <lastmod>2023-10-15</lastmod>
+  </url>
 </urlset>
