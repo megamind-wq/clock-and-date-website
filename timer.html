@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A free online countdown timer for meetings, cooking, or workouts. Easy to set and use.">
+    <meta name="keywords" content="online timer, countdown timer, free timer, meeting timer">
+    <meta name="author" content="Samuel">
+    <title>Online Timer - Free Countdown Timer</title>
+    <link rel="icon" type="image/png" href="../my-favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <button id="dark-mode-toggle">Dark Mode</button>
+    <header>
+        <h1>Online Timer</h1>
+    </header>
+    <nav>
+        <button onclick="window.location.href='../'">Home</button>
+        <button onclick="window.location.href='stopwatch.html'">Stopwatch</button>
+        <button onclick="window.location.href='timer.html'">Timer</button>
+        <button onclick="window.location.href='world-clock.html'">World Clock</button>
+        <button onclick="window.location.href='converter.html'">Global Clock Converter</button>
+        <button onclick="window.location.href='calendar.html'">Calendar</button>
+    </nav>
+    <div class="container">
+        <h2>Free Online Timer</h2>
+        <div id="timer-time">00:00:00</div>
+        <input type="number" id="timer-hours" min="0" max="99" placeholder="HH">
+        <input type="number" id="timer-minutes" min="0" max="59" placeholder="MM">
+        <input type="number" id="timer-seconds" min="0" max="59" placeholder="SS">
+        <button id="start-timer">Start</button>
+        <button id="stop-timer">Stop</button>
+        <button id="reset-timer">Reset</button>
+        <p><strong>How to Use Timer:</strong></p>
+        <p>- Enter hours (HH), minutes (MM), and seconds (SS) in the input fields (e.g., 01, 30, 00 for 1 hour 30 minutes).</p>
+        <p>- Click "Start" to begin the countdown (button changes to "Pause").</p>
+        <p>- Click "Pause" to pause; click "Start" again to resume.</p>
+        <p>- Click "Stop" to halt the timer completely.</p>
+        <p>- Click "Reset" to clear the time and inputs back to 00:00:00.</p>
+        <p>- When the timer reaches zero, an alert says "Time's up!".</p>
+    </div>
+    <div id="copyright">© <span id="year"></span> Clock and Date</div>
+    <script src="../script.js"></script>
+</body>
+</html>
