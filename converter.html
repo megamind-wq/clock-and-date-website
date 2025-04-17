@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert time between cities around the world with our free global clock converter.">
+    <meta name="keywords" content="global clock converter, time converter, time zone converter">
+    <meta name="author" content="Samuel">
+    <title>Global Clock Converter - Convert Time Between Locations</title>
+    <link rel="icon" type="image/png" href="../my-favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <button id="dark-mode-toggle">Dark Mode</button>
+    <header>
+        <h1>Global Clock Converter</h1>
+    </header>
+    <nav>
+        <button onclick="window.location.href='../'">Home</button>
+        <button onclick="window.location.href='stopwatch.html'">Stopwatch</button>
+        <button onclick="window.location.href='timer.html'">Timer</button>
+        <button onclick="window.location.href='world-clock.html'">World Clock</button>
+        <button onclick="window.location.href='converter.html'">Global Clock Converter</button>
+        <button onclick="window.location.href='calendar.html'">Calendar</button>
+    </nav>
+    <div class="container">
+        <h2>Convert Clock Between Locations</h2>
+        <select id="from-city"></select>
+        <input type="datetime-local" id="from-time">
+        <select id="to-city"></select>
+        <button onclick="convertTime()">Convert</button>
+        <div id="converted-time"></div>
+        <p><strong>How to Use Global Clock Converter:</strong></p>
+        <p>- Select a starting city from the "From" dropdown (e.g., "New York, USA").</p>
+        <p>- Pick a date and time using the calendar input (e.g., 2025-03-30 14:35).</p>
+        <p>- Choose a destination city from the "To" dropdown (e.g., "Tokyo, Japan").</p>
+        <p>- Click "Convert" to see the equivalent time in both locations, displayed vertically below.</p>
+        <p>- If no time is selected or it’s invalid, an error message appears.</p>
+    </div>
+    <div id="copyright">© <span id="year"></span> Clock and Date</div>
+    <script src="../script.js"></script>
+</body>
+</html>
