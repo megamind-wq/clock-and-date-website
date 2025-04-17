@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A free online stopwatch tool for timing events, meetings, or workouts. Easy to use and accurate.">
+    <meta name="keywords" content="online stopwatch, free stopwatch, stopwatch timer, event timer">
+    <meta name="author" content="Samuel">
+    <title>Online Stopwatch - Free Timer for Events and Workouts</title>
+    <link rel="icon" type="image/png" href="../my-favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <button id="dark-mode-toggle">Dark Mode</button>
+    <header>
+        <h1>Online Stopwatch</h1>
+    </header>
+    <nav>
+        <button onclick="window.location.href='../'">Home</button>
+        <button onclick="window.location.href='stopwatch.html'">Stopwatch</button>
+        <button onclick="window.location.href='timer.html'">Timer</button>
+        <button onclick="window.location.href='world-clock.html'">World Clock</button>
+        <button onclick="window.location.href='converter.html'">Global Clock Converter</button>
+        <button onclick="window.location.href='calendar.html'">Calendar</button>
+    </nav>
+    <div class="container">
+        <h2>Free Online Stopwatch</h2>
+        <div id="stopwatch-time">00:00:00.00</div>
+        <button id="start-stopwatch">Start</button>
+        <button id="stop-stopwatch">Stop</button>
+        <button id="lap-stopwatch">Lap</button>
+        <button id="reset-stopwatch">Reset</button>
+        <div id="laps"></div>
+        <p><strong>How to Use Stopwatch:</strong></p>
+        <p>- Click "Start" to begin timing (button changes to "Pause").</p>
+        <p>- Click "Pause" to pause; click "Start" again to resume.</p>
+        <p>- Click "Stop" to halt the stopwatch completely.</p>
+        <p>- Click "Lap" while running to record a lap time (displayed below).</p>
+        <p>- Click "Reset" to clear the time and laps back to 00:00:00.00.</p>
+    </div>
+    <div id="copyright">© <span id="year"></span> Clock and Date</div>
+    <script src="../script.js"></script>
+</body>
+</html>
