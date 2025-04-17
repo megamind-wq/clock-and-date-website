@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A 12-month calendar with holidays, adjusted to your local time zone. View today’s date, upcoming events, and holidays worldwide.">
+    <meta name="keywords" content="online calendar, world calendar, holiday calendar, monthly calendar, event planner">
+    <meta name="author" content="Samuel">
+    <title>Online Calendar - 12-Month Planner with Holidays</title>
+    <link rel="icon" type="image/png" href="../my-favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="stylesheet" href="../styles.css"> <!-- Link to shared stylesheet -->
+</head>
+<body>
+    <button id="dark-mode-toggle">Dark Mode</button>
+    <header>
+        <h1>Online Calendar</h1>
+    </header>
+    <nav>
+        <!-- Navigation links -->
+        <button onclick="window.location.href='../'">Home</button>
+        <button onclick="window.location.href='stopwatch.html'">Stopwatch</button>
+        <button onclick="window.location.href='timer.html'">Timer</button>
+        <button onclick="window.location.href='world-clock.html'">World Clock</button>
+        <button onclick="window.location.href='converter.html'">Global Clock Converter</button>
+        <button onclick="window.location.href='calendar.html'">Calendar</button>
+    </nav>
+    <div class="container">
+        <h2>12-Month Calendar</h2>
+        <div id="calendar-grid"></div>
+        <p><strong>How to Use Calendar:</strong></p>
+        <p>- View a 12-month calendar for the current year, adjusted to your local time zone.</p>
+        <p>- Months are arranged in a 3×4 grid (3 horizontal, 4 vertical).</p>
+        <p>- Today’s date is highlighted in blue.</p>
+        <p>- Major holidays worldwide are highlighted in yellow with short names displayed.</p>
+        <p>- Days from previous/next months are grayed out for context.</p>
+    </div>
+    <div id="copyright">© <span id="year"></span> Clock and Date</div>
+    <script src="../script.js"></script> <!-- Link to shared JavaScript -->
+</body>
+</html>
