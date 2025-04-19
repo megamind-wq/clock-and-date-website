@@ -7,8 +7,16 @@
     <meta name="keywords" content="online calendar, world calendar, holiday calendar, monthly calendar, event planner">
     <meta name="author" content="Samuel">
     <title>Online Calendar - 12-Month Planner with Holidays</title>
-    <link rel="icon" type="image/png" href="../my-favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="stylesheet" href="/styles.css"> <!-- Link to shared stylesheet -->
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="my-favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="my-favicon/favicon.svg">
+    <link rel="shortcut icon" href="my-favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="my-favicon/apple-touch-icon.png">
+    <link rel="manifest" href="my-favicon/site.webmanifest">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=DS-Digital&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <button id="dark-mode-toggle">Dark Mode</button>
@@ -17,7 +25,7 @@
     </header>
     <nav>
         <!-- Navigation links -->
-        <button onclick="window.location.href='../'">Home</button>
+        <button onclick="window.location.href='index.html'">Home</button>
         <button onclick="window.location.href='stopwatch.html'">Stopwatch</button>
         <button onclick="window.location.href='timer.html'">Timer</button>
         <button onclick="window.location.href='world-clock.html'">World Clock</button>
@@ -35,6 +43,6 @@
         <p>- Days from previous/next months are grayed out for context.</p>
     </div>
     <div id="copyright">© <span id="year"></span> Clock and Date</div>
-    <script src="/script.js"></script> <!-- Link to shared JavaScript -->
+    <script src="script.js"></script> <!-- Link to shared JavaScript -->
 </body>
 </html>
