@@ -1,28 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <!-- Created with Free Online Sitemap Generator www.xml-sitemaps.com -->
   <url>
     <loc>https://clockanddate.com/</loc>
-    <lastmod>2025-04-17T14:30:00+00:00</lastmod>
+    <lastmod>2025-04-19T13:41:52+00:00</lastmod>
   </url>
   <url>
-    <loc>https://clockanddate.com/tools/stopwatch.html</loc>
-    <lastmod>2025-04-17T14:30:00+00:00</lastmod>
+    <loc>https://clockanddate.com/stopwatch.html</loc>
+    <lastmod>2025-04-19T13:41:52+00:00</lastmod>
   </url>
   <url>
-    <loc>https://clockanddate.com/tools/timer.html</loc>
-    <lastmod>2025-04-17T14:30:00+00:00</lastmod>
+    <loc>https://clockanddate.com/timer.html</loc>
+    <lastmod>2025-04-19T13:41:52+00:00</lastmod>
   </url>
   <url>
-    <loc>https://clockanddate.com/tools/world-clock.html</loc>
-    <lastmod>2025-04-17T14:30:00+00:00</lastmod>
+    <loc>https://clockanddate.com/world-clock.html</loc>
+    <lastmod>2025-04-19T13:41:52+00:00</lastmod>
   </url>
   <url>
-    <loc>https://clockanddate.com/tools/converter.html</loc>
-    <lastmod>2025-04-17T14:30:00+00:00</lastmod>
+    <loc>https://clockanddate.com/converter.html</loc>
+    <lastmod>2025-04-19T13:41:52+00:00</lastmod>
   </url>
   <url>
-    <loc>https://clockanddate.com/tools/calendar.html</loc>
-    <lastmod>2025-04-17T14:30:00+00:00</lastmod>
+    <loc>https://clockanddate.com/calendar.html</loc>
+    <lastmod>2025-04-19T13:41:52+00:00</lastmod>
   </url>
 </urlset>
