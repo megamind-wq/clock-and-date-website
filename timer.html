@@ -7,15 +7,12 @@
     <meta name="keywords" content="online timer, countdown timer, free timer, meeting timer">
     <meta name="author" content="Samuel">
     <title>Online Timer - Free Countdown Timer</title>
-    <!-- Favicons -->
     <link rel="icon" type="image/png" href="my-favicon/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/svg+xml" href="my-favicon/favicon.svg">
     <link rel="shortcut icon" href="my-favicon/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="my-favicon/apple-touch-icon.png">
     <link rel="manifest" href="my-favicon/site.webmanifest">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=DS-Digital&display=swap" rel="stylesheet">
-    <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -32,21 +29,25 @@
         <button onclick="window.location.href='calendar.html'">Calendar</button>
     </nav>
     <div class="container">
-        <h2>Free Online Timer</h2>
-        <div id="timer-time">00:00:00</div>
-        <input type="number" id="timer-hours" min="0" max="99" placeholder="HH">
-        <input type="number" id="timer-minutes" min="0" max="59" placeholder="MM">
-        <input type="number" id="timer-seconds" min="0" max="59" placeholder="SS">
-        <button id="start-timer">Start</button>
-        <button id="stop-timer">Stop</button>
-        <button id="reset-timer">Reset</button>
-        <p><strong>How to Use Timer:</strong></p>
-        <p>- Enter hours (HH), minutes (MM), and seconds (SS) in the input fields (e.g., 01, 30, 00 for 1 hour 30 minutes).</p>
-        <p>- Click "Start" to begin the countdown (button changes to "Pause").</p>
-        <p>- Click "Pause" to pause; click "Start" again to resume.</p>
-        <p>- Click "Stop" to halt the timer completely.</p>
-        <p>- Click "Reset" to clear the time and inputs back to 00:00:00.</p>
-        <p>- When the timer reaches zero, an alert says "Time's up!".</p>
+        <div class="content-section active">
+            <h2>Timer</h2>
+            <div id="timer-time">00:00:00</div>
+            <input type="number" id="timer-hours" min="0" max="99" placeholder="HH">
+            <input type="number" id="timer-minutes" min="0" max="59" placeholder="MM">
+            <input type="number" id="timer-seconds" min="0" max="59" placeholder="SS">
+            <button id="start-timer">Start</button>
+            <button id="stop-timer">Stop</button>
+            <button id="reset-timer">Reset</button>
+        </div>
+        <div class="instructions-section active">
+            <p><strong>How to Use Timer:</strong></p>
+            <p>- Enter hours (HH), minutes (MM), and seconds (SS) in the input fields (e.g., 01, 30, 00 for 1 hour 30 minutes).</p>
+            <p>- Click "Start" to begin the countdown (button changes to "Pause").</p>
+            <p>- Click "Pause" to pause; click "Start" again to resume.</p>
+            <p>- Click "Stop" to halt the timer completely.</p>
+            <p>- Click "Reset" to clear the time and inputs back to 00:00:00.</p>
+            <p>- When the timer reaches zero, an alert says "Time's up!".</p>
+        </div>
     </div>
     <div id="copyright">© <span id="year"></span> Clock and Date</div>
     <script src="script.js"></script>
