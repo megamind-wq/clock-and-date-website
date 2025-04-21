@@ -1,4 +1,3 @@
-// Time Zones for World Clock and Converter (75 unique locations)
 const timeZones = {
     "New York, USA": "America/New_York",
     "London, United Kingdom": "Europe/London",
@@ -80,7 +79,6 @@ const timeZones = {
     "Honolulu, USA": "Pacific/Honolulu"
 };
 
-// Regional Breakdown for World Clock
 const regions = {
     "Major Cities": [
         "New York, USA", "London, United Kingdom", "Tokyo, Japan", "Paris, France", "Dubai, UAE",
@@ -118,32 +116,30 @@ const regions = {
     ]
 };
 
-// Major Worldwide Holidays for 2025 with Short Names
 const holidays = [
-    { name: "New Yr", month: 0, day: 1 },        // Jan 1
-    { name: "CNY", month: 0, day: 29 },          // Jan 29, 2025 (Chinese New Year)
-    { name: "Val", month: 1, day: 14 },          // Feb 14 (Valentine's)
-    { name: "Wom Day", month: 2, day: 8 },       // Mar 8 (Women's Day)
-    { name: "St Pat", month: 2, day: 17 },       // Mar 17 (St. Patrick's)
-    { name: "Earth", month: 3, day: 22 },        // Apr 22 (Earth Day)
-    { name: "Labor", month: 4, day: 1 },         // May 1 (Labor Day)
-    { name: "Eid-F", month: 2, day: 30 },        // Mar 30, 2025 (Eid al-Fitr, est.)
-    { name: "Eid-A", month: 5, day: 6 },         // Jun 6, 2025 (Eid al-Adha, est.)
-    { name: "Ind US", month: 6, day: 4 },        // Jul 4 (Independence Day USA)
-    { name: "Bastille", month: 6, day: 14 },     // Jul 14 (France)
-    { name: "Diwali", month: 9, day: 20 },       // Oct 20, 2025 (approx.)
-    { name: "Hall", month: 9, day: 31 },         // Oct 31 (Halloween)
-    { name: "Xmas Eve", month: 11, day: 24 },    // Dec 24
-    { name: "Xmas", month: 11, day: 25 },        // Dec 25
-    { name: "NY Eve", month: 11, day: 31 }       // Dec 31
+    { name: "New Yr", month: 0, day: 1 },
+    { name: "CNY", month: 0, day: 29 },
+    { name: "Val", month: 1, day: 14 },
+    { name: "Wom Day", month: 2, day: 8 },
+    { name: "St Pat", month: 2, day: 17 },
+    { name: "Earth", month: 3, day: 22 },
+    { name: "Labor", month: 4, day: 1 },
+    { name: "Eid-F", month: 2, day: 30 },
+    { name: "Eid-A", month: 5, day: 6 },
+    { name: "Ind US", month: 6, day: 4 },
+    { name: "Bastille", month: 6, day: 14 },
+    { name: "Diwali", month: 9, day: 20 },
+    { name: "Hall", month: 9, day: 31 },
+    { name: "Xmas Eve", month: 11, day: 24 },
+    { name: "Xmas", month: 11, day: 25 },
+    { name: "NY Eve", month: 11, day: 31 }
 ];
 
-// Utility Functions
 function formatStopwatchTime(ms) {
     const hours = Math.floor(ms / 3600000);
     const minutes = Math.floor((ms % 3600000) / 60000);
     const seconds = Math.floor((ms % 60000) / 1000);
-    const milliseconds = Math.floor((ms % 1000) / 10); // Divide by 10 for 2 digits (00-99)
+    const milliseconds = Math.floor((ms % 1000) / 10);
     return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}.${String(milliseconds).padStart(2, "0")}`;
 }
 
@@ -154,21 +150,23 @@ function formatTimerTime(ms) {
     return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 }
 
-// Local Time and Date
 function updateLocalTimeAndDate() {
     const now = new Date();
     const time = now.toLocaleTimeString("en-US", { hour12: false });
     const options = { month: "long", day: "numeric", year: "numeric" };
     const date = now.toLocaleDateString("en-US", options);
-    document.getElementById("time-display").textContent = time;
-    document.getElementById("date-display").textContent = date;
+    const timeDisplay = document.getElementById("time-display");
+    const dateDisplay = document.getElementById("date-display");
+    if (timeDisplay) timeDisplay.textContent = time;
+    if (dateDisplay) dateDisplay.textContent = date;
 }
-setInterval(updateLocalTimeAndDate, 1000);
-updateLocalTimeAndDate();
 
-// World Clock
 function updateClocks() {
     const grid = document.getElementById("clock-grid");
+    if (!grid) {
+        console.warn("clock-grid not found");
+        return;
+    }
     grid.innerHTML = "";
     Object.entries(regions).forEach(([region, cityList]) => {
         const header = document.createElement("div");
@@ -178,47 +176,60 @@ function updateClocks() {
 
         cityList.forEach(city => {
             const timezone = timeZones[city];
-            const time = new Date().toLocaleTimeString("en-US", { timeZone: timezone, hour12: false });
-            const card = document.createElement("div");
-            card.className = "clock-card";
-            card.innerHTML = `<h3>${city}</h3><p>${time}</p>`;
-            grid.appendChild(card);
+            try {
+                const time = new Date().toLocaleTimeString("en-US", { timeZone: timezone, hour12: false });
+                const card = document.createElement("div");
+                card.className = "clock-card";
+                card.innerHTML = `<h3>${city}</h3><p>${time}</p>`;
+                grid.appendChild(card);
+            } catch (e) {
+                console.error(`Error for city ${city}: ${e.message}`);
+            }
         });
     });
 }
-setInterval(updateClocks, 1000);
-updateClocks();
 
-// Stopwatch
 const stopwatch = {
     elapsedTime: 0,
     running: false,
     interval: null,
     startTime: null,
     init() {
-        document.getElementById("start-stopwatch").addEventListener("click", () => this.toggle());
-        document.getElementById("stop-stopwatch").addEventListener("click", () => this.stop());
-        document.getElementById("lap-stopwatch").addEventListener("click", () => this.lap());
-        document.getElementById("reset-stopwatch").addEventListener("click", () => this.reset());
+        console.log("Initializing stopwatch");
+        const startButton = document.getElementById("start-stopwatch");
+        const stopButton = document.getElementById("stop-stopwatch");
+        const lapButton = document.getElementById("lap-stopwatch");
+        const resetButton = document.getElementById("reset-stopwatch");
+        if (!startButton || !stopButton || !lapButton || !resetButton) {
+            console.warn("Stopwatch buttons not found");
+            return;
+        }
+        startButton.addEventListener("click", () => this.toggle());
+        stopButton.addEventListener("click", () => this.stop());
+        lapButton.addEventListener("click", () => this.lap());
+        resetButton.addEventListener("click", () => this.reset());
     },
     update() {
         const currentTime = performance.now();
         const deltaTime = currentTime - this.startTime;
         const totalTime = this.elapsedTime + deltaTime;
-        document.getElementById("stopwatch-time").textContent = formatStopwatchTime(totalTime);
+        const timeDisplay = document.getElementById("stopwatch-time");
+        if (timeDisplay) timeDisplay.textContent = formatStopwatchTime(totalTime);
     },
     toggle() {
         if (!this.running) {
             this.startTime = performance.now();
             this.interval = setInterval(() => this.update(), 10);
             this.running = true;
-            document.getElementById("start-stopwatch").textContent = "Pause";
+            const startButton = document.getElementById("start-stopwatch");
+            if (startButton) startButton.textContent = "Pause";
         } else {
             clearInterval(this.interval);
             const currentTime = performance.now();
             this.elapsedTime += currentTime - this.startTime;
             this.running = false;
-            document.getElementById("start-stopwatch").textContent = "Start";
+            const startButton = document.getElementById("start-stopwatch");
+            if (startButton) startButton.textContent = "Start";
         }
     },
     stop() {
@@ -227,7 +238,8 @@ const stopwatch = {
             const currentTime = performance.now();
             this.elapsedTime += currentTime - this.startTime;
             this.running = false;
-            document.getElementById("start-stopwatch").textContent = "Start";
+            const startButton = document.getElementById("start-stopwatch");
+            if (startButton) startButton.textContent = "Start";
         }
     },
     lap() {
@@ -236,7 +248,8 @@ const stopwatch = {
             const lapTime = this.elapsedTime + (currentTime - this.startTime);
             const lapElement = document.createElement("p");
             lapElement.textContent = formatStopwatchTime(lapTime);
-            document.getElementById("laps").appendChild(lapElement);
+            const lapsContainer = document.getElementById("laps");
+            if (lapsContainer) lapsContainer.appendChild(lapElement);
         }
     },
     reset() {
@@ -244,28 +257,38 @@ const stopwatch = {
         this.running = false;
         this.elapsedTime = 0;
         this.startTime = null;
-        document.getElementById("stopwatch-time").textContent = "00:00:00.00";
-        document.getElementById("laps").innerHTML = "";
-        document.getElementById("start-stopwatch").textContent = "Start";
+        const timeDisplay = document.getElementById("stopwatch-time");
+        const lapsContainer = document.getElementById("laps");
+        if (timeDisplay) timeDisplay.textContent = "00:00:00.00";
+        if (lapsContainer) lapsContainer.innerHTML = "";
+        const startButton = document.getElementById("start-stopwatch");
+        if (startButton) startButton.textContent = "Start";
     }
 };
-stopwatch.init();
 
-// Timer
 const timer = {
     remainingTime: 0,
     running: false,
     interval: null,
     endTime: null,
     init() {
-        document.getElementById("start-timer").addEventListener("click", () => this.toggle());
-        document.getElementById("stop-timer").addEventListener("click", () => this.stop());
-        document.getElementById("reset-timer").addEventListener("click", () => this.reset());
+        console.log("Initializing timer");
+        const startButton = document.getElementById("start-timer");
+        const stopButton = document.getElementById("stop-timer");
+        const resetButton = document.getElementById("reset-timer");
+        if (!startButton || !stopButton || !resetButton) {
+            console.warn("Timer buttons not found");
+            return;
+        }
+        startButton.addEventListener("click", () => this.toggle());
+        stopButton.addEventListener("click", () => this.stop());
+        resetButton.addEventListener("click", () => this.reset());
     },
     update() {
         const currentTime = performance.now();
         this.remainingTime = Math.max(0, this.endTime - currentTime);
-        document.getElementById("timer-time").textContent = formatTimerTime(this.remainingTime);
+        const timeDisplay = document.getElementById("timer-time");
+        if (timeDisplay) timeDisplay.textContent = formatTimerTime(this.remainingTime);
         if (this.remainingTime <= 0) {
             this.stop();
             alert("Time's up!");
@@ -273,16 +296,17 @@ const timer = {
     },
     toggle() {
         if (!this.running && this.remainingTime === 0) {
-            const hours = parseInt(document.getElementById("timer-hours").value) || 0;
-            const minutes = parseInt(document.getElementById("timer-minutes").value) || 0;
-            const seconds = parseInt(document.getElementById("timer-seconds").value) || 0;
+            const hours = parseInt(document.getElementById("timer-hours")?.value) || 0;
+            const minutes = parseInt(document.getElementById("timer-minutes")?.value) || 0;
+            const seconds = parseInt(document.getElementById("timer-seconds")?.value) || 0;
             const totalMs = (hours * 3600 + minutes * 60 + seconds) * 1000;
             if (totalMs > 0) {
                 this.remainingTime = totalMs;
                 this.endTime = performance.now() + totalMs;
                 this.interval = setInterval(() => this.update(), 1000);
                 this.running = true;
-                document.getElementById("start-timer").textContent = "Pause";
+                const startButton = document.getElementById("start-timer");
+                if (startButton) startButton.textContent = "Pause";
                 this.update();
             } else {
                 alert("Please set a valid time!");
@@ -290,46 +314,50 @@ const timer = {
         } else if (this.running) {
             clearInterval(this.interval);
             this.running = false;
-            document.getElementById("start-timer").textContent = "Start";
+            const startButton = document.getElementById("start-timer");
+            if (startButton) startButton.textContent = "Start";
         } else if (!this.running && this.remainingTime > 0) {
             this.endTime = performance.now() + this.remainingTime;
             this.interval = setInterval(() => this.update(), 1000);
             this.running = true;
-            document.getElementById("start-timer").textContent = "Pause";
+            const startButton = document.getElementById("start-timer");
+            if (startButton) startButton.textContent = "Pause";
         }
     },
     stop() {
         clearInterval(this.interval);
         this.running = false;
-        document.getElementById("start-timer").textContent = "Start";
+        const startButton = document.getElementById("start-timer");
+        if (startButton) startButton.textContent = "Start";
     },
     reset() {
         clearInterval(this.interval);
         this.running = false;
         this.remainingTime = 0;
         this.endTime = null;
-        document.getElementById("timer-time").textContent = "00:00:00";
-        document.getElementById("timer-hours").value = "";
-        document.getElementById("timer-minutes").value = "";
-        document.getElementById("timer-seconds").value = "";
-        document.getElementById("start-timer").textContent = "Start";
+        const timeDisplay = document.getElementById("timer-time");
+        const hoursInput = document.getElementById("timer-hours");
+        const minutesInput = document.getElementById("timer-minutes");
+        const secondsInput = document.getElementById("timer-seconds");
+        if (timeDisplay) timeDisplay.textContent = "00:00:00";
+        if (hoursInput) hoursInput.value = "";
+        if (minutesInput) minutesInput.value = "";
+        if (secondsInput) secondsInput.value = "";
+        const startButton = document.getElementById("start-timer");
+        if (startButton) startButton.textContent = "Start";
     }
 };
-timer.init();
 
-// Global Clock Converter
 function populateCities() {
     const fromCitySelect = document.getElementById("from-city");
     const toCitySelect = document.getElementById("to-city");
-
     if (!fromCitySelect || !toCitySelect) {
-        console.error("Dropdown elements not found!");
+        console.warn("City dropdowns not found");
         return;
     }
-
+    console.log("Populating city dropdowns");
     fromCitySelect.innerHTML = "";
     toCitySelect.innerHTML = "";
-
     Object.entries(timeZones).forEach(([city, timezone]) => {
         const fromOption = document.createElement("option");
         const toOption = document.createElement("option");
@@ -341,28 +369,27 @@ function populateCities() {
 }
 
 function convertTime() {
-    const fromCity = document.getElementById("from-city").value;
-    const toCity = document.getElementById("to-city").value;
-    const fromTimeInput = document.getElementById("from-time").value;
+    const fromCity = document.getElementById("from-city")?.value;
+    const toCity = document.getElementById("to-city")?.value;
+    const fromTimeInput = document.getElementById("from-time")?.value;
     const convertedTimeDiv = document.getElementById("converted-time");
-
+    if (!convertedTimeDiv) {
+        console.warn("converted-time div not found");
+        return;
+    }
     if (!fromTimeInput) {
         convertedTimeDiv.innerHTML = "<p>Please select a date and time!</p>";
         return;
     }
-
     const fromTime = new Date(fromTimeInput);
     if (isNaN(fromTime.getTime())) {
         convertedTimeDiv.innerHTML = "<p>Invalid date/time!</p>";
         return;
     }
-
     const fromCityName = Object.keys(timeZones).find(key => timeZones[key] === fromCity);
     const toCityName = Object.keys(timeZones).find(key => timeZones[key] === toCity);
-
     const fromTimeStr = fromTime.toLocaleString("en-US", { timeZone: fromCity });
     const toTimeStr = new Date(fromTimeStr).toLocaleString("en-US", { timeZone: toCity });
-
     convertedTimeDiv.innerHTML = "";
     const fromP = document.createElement("p");
     const toP = document.createElement("p");
@@ -372,29 +399,28 @@ function convertTime() {
     convertedTimeDiv.appendChild(toP);
 }
 
-// Calendar with Holidays
 function generateCalendar() {
     const grid = document.getElementById("calendar-grid");
+    if (!grid) {
+        console.warn("calendar-grid not found");
+        return;
+    }
+    console.log("Generating calendar");
     grid.innerHTML = "";
     const now = new Date();
     const year = now.getFullYear();
     const today = now.getDate();
     const currentMonth = now.getMonth();
-    const localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
     const monthNames = [
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
-
     for (let month = 0; month < 12; month++) {
         const monthDiv = document.createElement("div");
         monthDiv.className = "month";
         monthDiv.innerHTML = `<h3>${monthNames[month]} ${year}</h3>`;
         const daysDiv = document.createElement("div");
         daysDiv.className = "days";
-
-        // Day headers (Sun–Sat)
         const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         daysOfWeek.forEach(day => {
             const dayHeader = document.createElement("div");
@@ -402,14 +428,10 @@ function generateCalendar() {
             dayHeader.textContent = day;
             daysDiv.appendChild(dayHeader);
         });
-
-        // Days of the month
         const firstDay = new Date(year, month, 1);
         const lastDay = new Date(year, month + 1, 0);
         const firstDayOfWeek = firstDay.getDay();
         const totalDays = lastDay.getDate();
-
-        // Previous month days
         const prevMonthLastDay = new Date(year, month, 0).getDate();
         for (let i = firstDayOfWeek - 1; i >= 0; i--) {
             const dayDiv = document.createElement("div");
@@ -417,15 +439,11 @@ function generateCalendar() {
             dayDiv.textContent = prevMonthLastDay - i;
             daysDiv.appendChild(dayDiv);
         }
-
-        // Current month days
         for (let day = 1; day <= totalDays; day++) {
             const dayDiv = document.createElement("div");
             if (month === currentMonth && day === today) {
                 dayDiv.className = "today";
             }
-
-            // Check for holidays
             const holiday = holidays.find(h => h.month === month && h.day === day);
             if (holiday) {
                 dayDiv.className = "holiday";
@@ -433,11 +451,8 @@ function generateCalendar() {
             } else {
                 dayDiv.textContent = day;
             }
-
             daysDiv.appendChild(dayDiv);
         }
-
-        // Next month days
         const lastDayOfWeek = lastDay.getDay();
         const remainingDays = 6 - lastDayOfWeek;
         for (let i = 1; i <= remainingDays; i++) {
@@ -446,41 +461,36 @@ function generateCalendar() {
             dayDiv.textContent = i;
             daysDiv.appendChild(dayDiv);
         }
-
         monthDiv.appendChild(daysDiv);
         grid.appendChild(monthDiv);
     }
 }
 
-// Update Copyright Year
 function updateCopyrightYear() {
     const currentYear = new Date().getFullYear();
-    document.getElementById("year").textContent = currentYear;
+    const yearElement = document.getElementById("year");
+    if (yearElement) yearElement.textContent = currentYear;
 }
 
-// Initialize Converter, Calendar, and Copyright
-document.addEventListener("DOMContentLoaded", () => {
-    populateCities();
-    generateCalendar();
-    updateCopyrightYear();
-});
-
-// Navigation
 function showSection(id) {
     const sections = [
         "time", "stopwatch", "timer", "world-clock", "converter", "calendar"
     ];
     sections.forEach(section => {
-        document.getElementById(`${section}-content`).classList.remove("active");
-        document.getElementById(`${section}-instructions`).classList.remove("active");
+        const content = document.getElementById(`${section}-content`);
+        const instructions = document.getElementById(`${section}-instructions`);
+        if (content) content.classList.remove("active");
+        if (instructions) instructions.classList.remove("active");
     });
-    document.getElementById(`${id}-content`).classList.add("active");
-    document.getElementById(`${id}-instructions`).classList.add("active");
+    const content = document.getElementById(`${id}-content`);
+    const instructions = document.getElementById(`${id}-instructions`);
+    if (content) content.classList.add("active");
+    if (instructions) instructions.classList.add("active");
 }
 
-// Dark Mode
-document.getElementById("dark-mode-toggle").addEventListener("click", () => {
+function toggleDarkMode() {
     const toggleButton = document.getElementById("dark-mode-toggle");
+    if (!toggleButton) return;
     document.body.classList.toggle("dark");
     if (document.body.classList.contains("dark")) {
         document.body.style.backgroundColor = "#222";
@@ -493,18 +503,20 @@ document.getElementById("dark-mode-toggle").addEventListener("click", () => {
             el.style.backgroundColor = "#444";
             el.style.color = "#fff";
         });
-        document.getElementById("date-display").style.color = "#fff";
+        const dateDisplay = document.getElementById("date-display");
+        if (dateDisplay) dateDisplay.style.color = "#fff";
         document.querySelectorAll(".instructions-section p").forEach(el => el.style.color = "#ddd");
         document.querySelectorAll(".days .header").forEach(el => {
             el.style.backgroundColor = "#555";
-            el.style.color = "#fff"; // Week days white
+            el.style.color = "#fff";
         });
         document.querySelectorAll(".days .holiday").forEach(el => el.style.color = "#333");
         document.querySelectorAll(".days div:not(.header):not(.holiday):not(.today)").forEach(el => {
-            el.style.color = "#00ccff"; // Dates blue
+            el.style.color = "#00ccff";
         });
-        document.querySelectorAll(".month h3").forEach(el => el.style.color = "#fff"); // Month names white
-        document.getElementById("copyright").style.color = "#ddd";
+        document.querySelectorAll(".month h3").forEach(el => el.style.color = "#fff");
+        const copyright = document.getElementById("copyright");
+        if (copyright) copyright.style.color = "#ddd";
         toggleButton.textContent = "Light Mode";
     } else {
         document.body.style.backgroundColor = "#f4f4f4";
@@ -518,18 +530,80 @@ document.getElementById("dark-mode-toggle").addEventListener("click", () => {
             el.style.backgroundColor = "white";
             el.style.color = "#333";
         });
-        document.getElementById("date-display").style.color = "#333";
+        const dateDisplay = document.getElementById("date-display");
+        if (dateDisplay) dateDisplay.style.color = "#333";
         document.querySelectorAll(".instructions-section p").forEach(el => el.style.color = "#555");
         document.querySelectorAll(".days .header").forEach(el => {
             el.style.backgroundColor = "#e0e0e0";
-            el.style.color = "#333"; // Week days back to default
+            el.style.color = "#333";
         });
         document.querySelectorAll(".days .holiday").forEach(el => el.style.color = "#333");
         document.querySelectorAll(".days div:not(.header):not(.holiday):not(.today)").forEach(el => {
-            el.style.color = "#333"; // Dates back to default
+            el.style.color = "#333";
         });
-        document.querySelectorAll(".month h3").forEach(el => el.style.color = "#0078d4"); // Month names back to blue
-        document.getElementById("copyright").style.color = "#555";
+        document.querySelectorAll(".month h3").forEach(el => el.style.color = "#0078d4");
+        const copyright = document.getElementById("copyright");
+        if (copyright) copyright.style.color = "#555";
         toggleButton.textContent = "Dark Mode";
+    }
+}
+
+function initializeIndex() {
+    console.log("Initializing index.html");
+    updateLocalTimeAndDate();
+    setInterval(updateLocalTimeAndDate, 1000);
+    updateClocks();
+    setInterval(updateClocks, 1000);
+    stopwatch.init();
+    timer.init();
+    populateCities();
+    generateCalendar();
+}
+
+function initializeWorldClock() {
+    console.log("Initializing world-clock.html");
+    updateClocks();
+    setInterval(updateClocks, 1000);
+}
+
+function initializeStopwatch() {
+    console.log("Initializing stopwatch.html");
+    stopwatch.init();
+}
+
+function initializeTimer() {
+    console.log("Initializing timer.html");
+    timer.init();
+}
+
+function initializeConverter() {
+    console.log("Initializing converter.html");
+    populateCities();
+}
+
+function initializeCalendar() {
+    console.log("Initializing calendar.html");
+    generateCalendar();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOM loaded");
+    updateCopyrightYear();
+    const darkModeToggle = document.getElementById("dark-mode-toggle");
+    if (darkModeToggle) darkModeToggle.addEventListener("click", toggleDarkMode);
+
+    const path = window.location.pathname.toLowerCase();
+    if (path.includes("index.html") || path === "/" || path === "") {
+        initializeIndex();
+    } else if (path.includes("world-clock.html")) {
+        initializeWorldClock();
+    } else if (path.includes("stopwatch.html")) {
+        initializeStopwatch();
+    } else if (path.includes("timer.html")) {
+        initializeTimer();
+    } else if (path.includes("converter.html")) {
+        initializeConverter();
+    } else if (path.includes("calendar.html")) {
+        initializeCalendar();
     }
 });
