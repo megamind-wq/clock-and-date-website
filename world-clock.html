@@ -7,15 +7,12 @@
     <meta name="keywords" content="world clock, global clock, online world clock, time zones, real-time clock">
     <meta name="author" content="Samuel">
     <title>World Clock - Real-Time Time Zones</title>
-    <!-- Favicons -->
     <link rel="icon" type="image/png" href="my-favicon/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/svg+xml" href="my-favicon/favicon.svg">
     <link rel="shortcut icon" href="my-favicon/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="my-favicon/apple-touch-icon.png">
     <link rel="manifest" href="my-favicon/site.webmanifest">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=DS-Digital&display=swap" rel="stylesheet">
-    <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -24,7 +21,6 @@
         <h1>World Clock</h1>
     </header>
     <nav>
-        <!-- Navigation links -->
         <button onclick="window.location.href='index.html'">Home</button>
         <button onclick="window.location.href='stopwatch.html'">Stopwatch</button>
         <button onclick="window.location.href='timer.html'">Timer</button>
@@ -33,14 +29,18 @@
         <button onclick="window.location.href='calendar.html'">Calendar</button>
     </nav>
     <div class="container">
-        <h2>Real-Time World Clock</h2>
-        <div class="clock-grid" id="clock-grid"></div>
-        <p><strong>How to Use World Clock:</strong></p>
-        <p>- Browse real-time clocks for 75 cities across 7 regions (Major Cities, Africa, Asia, Europe, North America, South America, Australia/Oceania).</p>
-        <p>- Each card shows the city name and current time (24-hour format), updating every second.</p>
-        <p>- Hover over a card to highlight it.</p>
+        <div class="content-section active">
+            <h2>Real-Time World Clock</h2>
+            <div class="clock-grid" id="clock-grid"></div>
+        </div>
+        <div class="instructions-section active">
+            <p><strong>How to Use World Clock:</strong></p>
+            <p>- Browse real-time clocks for 75 cities across 7 regions (Major Cities, Africa, Asia, Europe, North America, South America, Australia/Oceania).</p>
+            <p>- Each card shows the city name and current time (24-hour format), updating every second.</p>
+            <p>- Hover over a card to highlight it.</p>
+        </div>
     </div>
     <div id="copyright">© <span id="year"></span> Clock and Date</div>
-    <script src="script.js"></script> <!-- Link to shared JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
