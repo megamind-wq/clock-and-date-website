@@ -6,12 +6,12 @@
     <meta name="description" content="A vibrant clock tool with Stopwatch, Timer, Time, Global Clock Converter, World Clock, and Calendar with holidays.">
     <meta name="keywords" content="world clock, global clock converter, online stopwatch, timer, calendar, holidays online clock, world clock, digital clock, analog clock, time zones">
     <meta name="author" content="Samuel">
-    <title>Online Clock - Stopwatch, Timer, Time, World Clock, Global TimeConverter</title>
-    <link rel="icon" type="image/png" href="/my-favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/my-favicon/favicon.svg" />
-    <link rel="shortcut icon" href="/my-favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/my-favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="/my-favicon/site.webmanifest" /> 
+    <title>Online Clock - Stopwatch, Timer, Time, World Clock, Global Time Converter</title>
+    <link rel="icon" type="image/png" href="my-favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="my-favicon/favicon.svg">
+    <link rel="shortcut icon" href="my-favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="my-favicon/apple-touch-icon.png">
+    <link rel="manifest" href="my-favicon/site.webmanifest">
     <link href="https://fonts.googleapis.com/css2?family=DS-Digital&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -21,12 +21,12 @@
         <h1>Clock and Date</h1>
     </header>
     <nav>
-        <button onclick="window.location.href='/'">Time</button>
-        <button onclick="window.location.href='/tools/stopwatch.html'">Stopwatch</button>
-        <button onclick="window.location.href='/tools/timer.html'">Timer</button>
-        <button onclick="window.location.href='/tools/world-clock.html'">World Clock</button>
-        <button onclick="window.location.href='/tools/converter.html'">Global Clock Converter</button>
-        <button onclick="window.location.href='/tools/calendar.html'">Calendar</button>
+        <button onclick="showSection('time')">Time</button>
+        <button onclick="window.location.href='stopwatch.html'">Stopwatch</button>
+        <button onclick="window.location.href='timer.html'">Timer</button>
+        <button onclick="window.location.href='world-clock.html'">World Clock</button>
+        <button onclick="window.location.href='converter.html'">Global Clock Converter</button>
+        <button onclick="window.location.href='calendar.html'">Calendar</button>
     </nav>
     <div class="container">
         <!-- Time -->
@@ -44,6 +44,7 @@
 
         <!-- Stopwatch -->
         <div id="stopwatch-content" class="content-section">
+            <h2>Stopwatch</h2>
             <div id="stopwatch-time">00:00:00.00</div>
             <button id="start-stopwatch">Start</button>
             <button id="stop-stopwatch">Stop</button>
@@ -62,6 +63,7 @@
 
         <!-- Timer -->
         <div id="timer-content" class="content-section">
+            <h2>Timer</h2>
             <div id="timer-time">00:00:00</div>
             <input type="number" id="timer-hours" min="0" max="99" placeholder="HH">
             <input type="number" id="timer-minutes" min="0" max="59" placeholder="MM">
@@ -82,6 +84,7 @@
 
         <!-- World Clock -->
         <div id="world-clock-content" class="content-section">
+            <h2>Real-Time World Clock</h2>
             <div class="clock-grid" id="clock-grid"></div>
         </div>
         <div id="world-clock-instructions" class="instructions-section">
@@ -111,7 +114,7 @@
 
         <!-- Calendar -->
         <div id="calendar-content" class="content-section">
-            <h2>Calendar</h2>
+            <h2>12-Month Calendar</h2>
             <div id="calendar-grid"></div>
         </div>
         <div id="calendar-instructions" class="instructions-section">
@@ -124,7 +127,6 @@
         </div>
     </div>
     <div id="copyright">© <span id="year"></span> Clock and Date</div>
-
     <script src="script.js"></script>
 </body>
 </html>
